@@ -249,6 +249,71 @@ function copyTextToClipboard(text) {
     document.body.removeChild(textArea);
 }
 
+// [============= Native Downloading =============]
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+const endl = "\r\n";
+function generateNativesFile()
+{
+    let resultString = "";
+
+    let date = new Date();
+    resultString += "#pragma once" + endl + endl
+        + "// Generated " + date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear() + endl + endl;
+
+
+    for (let namespace in jsonData) {
+        resultString += "namespace " + namespace + endl +
+            "{" + endl;
+
+        let nsObj = jsonData[namespace];
+        for (let native in nsObj) {
+            let nativeObj = nsObj[native];
+            resultString += "\tstatic " + nativeObj.return_type + " " + nativeObj.name + "(";
+
+
+            let paramsObj = nativeObj["params"];
+            for (let param in paramsObj) {
+                let paramObj = paramsObj[param];
+
+                resultString += paramObj.type + " " + paramObj.name + (param != paramsObj.length - 1 ? ", " : "");
+            }
+
+            if (nativeObj.return_type == "void") {
+                resultString += ") { invoke<Void>(";
+            }
+            else {
+                resultString += ") { return invoke<" + nativeObj.return_type + ">(";
+            }
+
+            resultString += native + (paramsObj.length != 0 ? ", " : "");
+
+            for (let param in paramsObj) {
+                let paramObj = paramsObj[param];
+
+                resultString += paramObj.name + (param != paramsObj.length - 1 ? ", " : "");
+            }
+
+            resultString += "); } // " + native + " " + (nativeObj.jhash != null ? nativeObj.jhash : "") + endl;
+        }
+
+        resultString += "}" + endl + endl;
+    }
+
+    download("natives.h", resultString);
+}
+
 async function init() {
     loadNativeInfo();
 
@@ -287,7 +352,8 @@ async function init() {
     }
 
     const infobox = document.getElementById("infobox");
-    infobox.innerHTML = "<a class='nohover' style='float: left'>Namespaces: " + nsCount + " | " + "Natives: " + nCount + " | " + "Comments: " + cCount + " | " + "Known names: " + kCount + "</a>" + infobox.innerHTML;
+    infobox.innerHTML = "<a class='nohover' style='float: left'>Namespaces: " + nsCount + " | " + "Natives: " + nCount + " | " + "Comments: " + cCount + " | " + "Known names: " + kCount + " | " + "</a>" +
+                        "&nbsp;<a onclick='generateNativesFile()'>Generate Natives.h</a>" + infobox.innerHTML;
 
     document.getElementById("expand").addEventListener("click", function () {
         const c = getNamespaces();
