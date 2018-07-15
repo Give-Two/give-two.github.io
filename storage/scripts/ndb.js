@@ -1,4 +1,4 @@
-var jsonData;
+﻿var jsonData;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -10,7 +10,7 @@ function loadNativeInfo() {
     const file = new XMLHttpRequest();
 
     file.overrideMimeType("application/json");
-    file.open("GET", "https://raw.githubusercontent.com/give-two/NativeDatabase/master/natives.json", true);
+    file.open("GET", "https://raw.githubusercontent.com/Give-Two/give-two.github.io/master/storage/scripts/natives.json", true);
     file.onreadystatechange = function () {
         if (file.readyState === 4 && file.status === 200) {
             jsonData = JSON.parse(file.responseText);
