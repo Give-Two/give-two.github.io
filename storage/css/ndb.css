@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'PricedownBl-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('PricedownBl-Regular'), url('../fonts/pricedown bl.woff') format('woff');
+}
+
+#title {
+    color: ghostwhite;
+    font-size: 36px;
+    font-family: 'PricedownBl-Regular', sans;
+    text-align: center;
+    font-variant-ligatures: none;
+}
+
+#mainwindow {
+    text-align: left;
+    margin: 0 auto;
+    background: rgb(26, 26, 26);
+    border: 1px ghostwhite solid;
+    padding: 1em;
+    min-width: 800px;
+    width: 85%;
+    color: ghostwhite;
+}
+
+#infobox {
+    padding-left: 2px;
+}
+
+.externlink {
+    text-decoration: none;
+    color: #FFBA66;
+}
+
+.nohover {
+}
+
+.namespace {
+}
+
+body {
+    background: darkslategray;
+    font-family: Tahoma,Verdana,sans;
+    font-size: 14px;
+    overflow-y: scroll;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+ul {
+    list-style-type: none
+}
+
+li {
+    color: ghostwhite;
+}
+
+p {
+    display: block;
+}
+
+a:hover {
+    color: cadetblue;
+    cursor: default;
+}
+
+a:link {
+    color: ghostwhite;
+}
+
+.externlink:hover {
+    color: darkorange !important;
+}
+
+.nohover:hover {
+    color: inherit !important;
+}
+
+.namespace:hover {
+    padding-left: 2px;
+}
+
+.natives {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+#mainwindow {
+    text-align: left;
+    margin: 0 auto;
+    background: rgb(26, 26, 26);
+    border: 1px ghostwhite solid;
+    padding: 1em;
+    min-width: 800px;
+    width: 85%;
+    color: ghostwhite;
+}
+
+#nname {
+    color: ghostwhite;
+    text-decoration: none;
+}
+
+.funcbox {
+    display: block;
+    margin: 5px 0;
+    width: 800px;
+    padding: 5px 8px 5px 10px;
+    border-radius: 4px;
+    border: 3px darkorange solid;
+}
+
+.buttonbox {
+    background: darkorange;
+    color: black;
+    font-family: "PricedownBl-Regular", sans;
+    font-variant-ligatures: none;
+    position: relative;
+    float: right;
+    width: 70px;
+    height: 24px;
+    text-align: center;
+    background-size: 200% 100%;
+    border-radius: 8px;
+    padding-top: 8px;
+    margin-top: -4%;
+}
+
+.buttonbox:hover {
+    cursor: default;
+    transition: 500ms;
+    color: darkslategray;
+}
+
+.buttonbox:active {
+    transition: 0ms;
+    transform: translateY(2px);
+}
+
+.datatype {
+    color: darkorange;
+}
+
+.nativeName {
+    color: lightgray;
+    font-family: consolas,"courier new",courier,monospace;
+    font-size: 14px;
+    text-indent: -50px;
+    padding-left: 50px;
+    display: block;
+}
+
+.hash {
+    color: lightgreen;
+}
+
+.parameterName {
+    color: dimgray;
+}
